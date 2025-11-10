@@ -6,7 +6,7 @@ namespace Soenneker.Enums.ContentKinds;
 /// An enum for various content types.
 /// </summary>
 [Intellenum<string>]
-public partial class ContentKind
+public sealed partial class ContentKind
 {
     public static readonly ContentKind Json = new(nameof(Json));
 
