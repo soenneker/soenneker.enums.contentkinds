@@ -1,11 +1,11 @@
-﻿using Intellenum;
+using Soenneker.Gen.EnumValues;
 
 namespace Soenneker.Enums.ContentKinds;
 
 /// <summary>
 /// An enum for various content types.
 /// </summary>
-[Intellenum<string>]
+[EnumValue<string>]
 public sealed partial class ContentKind
 {
     public static readonly ContentKind Json = new(nameof(Json));
