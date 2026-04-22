@@ -1,10 +1,9 @@
-﻿using Xunit;
 
 namespace Soenneker.Enums.ContentKinds.Tests;
 
 public sealed class ContentKindTests
 {
-    [Fact]
+    [Test]
     public void Default()
     {
 
