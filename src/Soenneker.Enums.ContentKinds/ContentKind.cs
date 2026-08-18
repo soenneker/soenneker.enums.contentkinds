@@ -3,33 +3,33 @@ using Soenneker.Gen.EnumValues;
 namespace Soenneker.Enums.ContentKinds;
 
 /// <summary>
-/// An enum for various content types.
+/// Classifies payload content by the parsing strategy required to process it.
 /// </summary>
 [EnumValue<string>]
 public sealed partial class ContentKind
 {
     /// <summary>
-    /// The json.
+    /// JavaScript Object Notation (JSON) content.
     /// </summary>
     public static readonly ContentKind Json = new(nameof(Json));
 
     /// <summary>
-    /// The xml or html.
+    /// XML or HTML markup content.
     /// </summary>
     public static readonly ContentKind XmlOrHtml = new(nameof(XmlOrHtml));
 
     /// <summary>
-    /// The text.
+    /// Plain textual content.
     /// </summary>
     public static readonly ContentKind Text = new(nameof(Text));
 
     /// <summary>
-    /// The binary.
+    /// Binary content that should not be decoded as text.
     /// </summary>
     public static readonly ContentKind Binary = new(nameof(Binary));
 
     /// <summary>
-    /// The unknown.
+    /// Content whose format could not be determined.
     /// </summary>
     public static readonly ContentKind Unknown = new(nameof(Unknown));
 }
