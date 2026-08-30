@@ -5,7 +5,7 @@
 
 # Soenneker.Enums.ContentKinds
 
-Classifies payload content by the parsing strategy required to process it.
+A string-backed content classification that lets callers choose an appropriate parser without coupling the payload model to a MIME-type library.
 
 ## Install
 
@@ -13,14 +13,25 @@ Classifies payload content by the parsing strategy required to process it.
 dotnet add package Soenneker.Enums.ContentKinds
 ```
 
-## What you get
+## Usage
 
-- `ContentKind` — Classifies payload content by the parsing strategy required to process it.
+```csharp
+using Soenneker.Enums.ContentKinds;
 
-## API at a glance
+ContentKind kind = ContentKind.Json;
 
-| API | What it does | Result / important behavior |
-| --- | --- | --- |
-| `ContentKind.Json` | JavaScript Object Notation (JSON) content. | JavaScript Object Notation (JSON) content. |
-| `ContentKind.Binary` | Binary content that should not be decoded as text. | Binary content that should not be decoded as text. |
-| `ContentKind.Unknown` | Content whose format could not be determined. | Content whose format could not be determined. |
+if (!ContentKind.TryFromValue(input, out ContentKind? parsed))
+    parsed = ContentKind.Unknown;
+```
+
+Available values:
+
+- `Json` for JSON text
+- `XmlOrHtml` for markup
+- `Text` for other plain text
+- `Binary` for bytes that should not be decoded as text
+- `Unknown` when no classification is available
+
+The serialized strings exactly match those names. `System.Text.Json` writes the underlying string and rehydrates the shared static instance. Use `TryFromValue` for untrusted input; `FromValue` throws when the value is not defined. Name-based `FromName` and `TryFromName` methods are generated as well.
+
+`ContentKind` does not inspect bytes, validate syntax, distinguish XML from HTML, map MIME types, or choose a character encoding. The producer or consuming application is responsible for assigning the classification and applying size limits before parsing.
